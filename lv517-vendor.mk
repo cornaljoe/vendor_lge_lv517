@@ -42,10 +42,4 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/lge/lv517/proprietary/framework,system/framework)
 
-# misc
-#PRODUCT_COPY_FILES += \
-#    vendor/lge/lv517/proprietary/vendor/lib/libtime_genoff.so:obj/lib/libtime_genoff.so
-
-#PRODUCT_PACKAGES += \
-#    libtime_genoff
 

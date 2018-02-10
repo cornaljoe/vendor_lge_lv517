@@ -26,15 +26,6 @@ if [ $OPERATOR != GLOBAL ]; then
             NTCODE=${NTCODE_LIST#*,}
             NTCODE=${NTCODE:1:3}
 
-            MCCMNC_LIST=`getprop persist.sys.mccmnc-list "FFFFF"`
-            DEDICATE_OPERATOR_MCCMNC="XXXXXX"
-            if [[ "$MCCMNC_LIST" == *"999"* ]]; then
-                DEDICATE_OPERATOR_MCCMNC=${MCCMNC_LIST%%999*}
-                DEDICATE_MCCMNC_INDEX=${#DEDICATE_OPERATOR_MCCMNC}
-                DEDICATE_OPERATOR_MCCMNC=${MCCMNC_LIST:$DEDICATE_MCCMNC_INDEX:6}
-                DEDICATE_OPERATOR_MCCMNC=${DEDICATE_OPERATOR_MCCMNC%,}
-            fi
-
             mkdir /data/local/etc
             chown system:system /data/local/etc
             chmod 771 /data/local/etc
@@ -94,45 +85,28 @@ if [ $OPERATOR != GLOBAL ]; then
                                 chmod 644 /data/local/etc/${file1}
                             fi
                         done
-                    elif [ -d ${CUST_PROPPATH}/${DEDICATE_OPERATOR_MCCMNC} ]; then
-                        for file2 in $(ls -a ${CUST_PROPPATH}/${DEDICATE_OPERATOR_MCCMNC}); do
+                    elif [ -d ${CUST_PROPPATH}/FFF ]; then
+                        for file2 in $(ls -a ${CUST_PROPPATH}/FFF); do
                             if [ "$file2" != "." -a "$file2" != ".." ]; then
-                                echo "file2 = $file2"
-                                `cat ${CUST_PROPPATH}/${DEDICATE_OPERATOR_MCCMNC}/${file2} > /data/local/etc/${file2}`
+                                `cat ${CUST_PROPPATH}/FFF/${file2} > /data/local/etc/${file2}`
                                 chown system:system /data/local/etc/${file2}
                                 chmod 644 /data/local/etc/${file2}
                             fi
                         done
-                    elif [ -d ${CUST_PROPPATH}/FFF ]; then
-                        for file3 in $(ls -a ${CUST_PROPPATH}/FFF); do
+                    elif [ -d ${PROPPATH}/${NTCODE} ]; then
+                        for file3 in $(ls -a ${PROPPATH}/${NTCODE}); do
                             if [ "$file3" != "." -a "$file3" != ".." ]; then
-                                `cat ${CUST_PROPPATH}/FFF/${file3} > /data/local/etc/${file3}`
+                                `cat ${PROPPATH}/${NTCODE}/${file3} > /data/local/etc/${file3}`
                                 chown system:system /data/local/etc/${file3}
                                 chmod 644 /data/local/etc/${file3}
                             fi
                         done
-                    elif [ -d ${PROPPATH}/${NTCODE} ]; then
-                        for file4 in $(ls -a ${PROPPATH}/${NTCODE}); do
+                    elif [ -d ${PROPPATH}/FFF ]; then
+                        for file4 in $(ls -a ${PROPPATH}/FFF); do
                             if [ "$file4" != "." -a "$file4" != ".." ]; then
-                                `cat ${PROPPATH}/${NTCODE}/${file4} > /data/local/etc/${file4}`
+                                `cat ${PROPPATH}/FFF/${file4} > /data/local/etc/${file4}`
                                 chown system:system /data/local/etc/${file4}
                                 chmod 644 /data/local/etc/${file4}
-                            fi
-                        done
-                    elif [ -d ${PROPPATH}/${DEDICATE_OPERATOR_MCCMNC} ]; then
-                        for file5 in $(ls -a ${CUST_PROPPATH}/${DEDICATE_OPERATOR_MCCMNC}); do
-                            if [ "$file5" != "." -a "$file5" != ".." ]; then
-                                `cat ${PROPPATH}/${DEDICATE_OPERATOR_MCCMNC}/${file5} > /data/local/etc/${file5}`
-                                chown system:system /data/local/etc/${file5}
-                                chmod 644 /data/local/etc/${file5}
-                            fi
-                        done
-                    elif [ -d ${PROPPATH}/FFF ]; then
-                        for file6 in $(ls -a ${PROPPATH}/FFF); do
-                            if [ "$file6" != "." -a "$file6" != ".." ]; then
-                                `cat ${PROPPATH}/FFF/${file6} > /data/local/etc/${file6}`
-                                chown system:system /data/local/etc/${file6}
-                                chmod 644 /data/local/etc/${file6}
                             fi
                         done
                     fi

@@ -108,8 +108,8 @@ special_mode_mask values:
       <ISPSnapshot>imx258_preview</ISPSnapshot>
       <ISPVideo>imx258_preview</ISPVideo>
       <CPPVideo>imx258_cpp_video</CPPVideo>
-      <A3Preview>imx258_4k_preview_bu64244gwz</A3Preview>  <!-- for 3party app AE table-->      
-      <A3Video>imx258_4k_video_bu64244gwz</A3Video> <!-- for 3party app AE table-->  
+      <A3Preview>imx258_default_preview_bu64244gwz</A3Preview>
+      <A3Video>imx258_default_video_bu64244gwz</A3Video>
     </ChromatixName>
   </ResolutionChromatixInfo>
 </ChromatixConfigurationRoot>
